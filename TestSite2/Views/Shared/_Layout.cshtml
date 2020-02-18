@@ -49,9 +49,46 @@
 
     <script>
         $(document).ready(function () {
-            $('#table_id').DataTable();
+            $('#table1').DataTable();
         });
+        $(document).ready(function () {
+            $('#table3').DataTable();
+        });
+
+        $('.table tbody').on('click', '.btnAdd', function () {
+            debugger;
+            var selected = $('#table1').DataTable().row($(this).parents('tr')).data(); 
+            $(this).attr('disabled', true);
+            var col1 = selected[0];
+            var col2 = selected[1];
+            var col3 = selected[2];
+            var col4 = selected[3];
+            var result = '<tr><td>' + col1 + '</td> <td>'
+                + col2 + '</td> <td>'
+                + col3 + '</td> <td>'
+                + col4 + '</td>'
+                + '<td><input type="text" id="qty"/></td>'
+                + '<td class="text-center"><button class="btn btn-success glyphicon glyphicon-ok"></button> <button class="btn btn-danger glyphicon glyphicon-remove" id="remove"></button> </td> </tr>';
+            
+            $('#body1').append(result);
+
+            //if()
+
+
+        });
+
+
+
+
+        $('.table tbody').on('click', '#remove', function () {
+            $(this).closest('tr').remove();
+        });
+
+
     </script>
+
+
+   
 
 
     @*@Scripts.Render("~/bundles/jquery")
