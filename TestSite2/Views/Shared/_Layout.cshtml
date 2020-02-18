@@ -48,6 +48,9 @@
     <script src="//cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
     <script>
+
+        var isActive = true;
+
         $(document).ready(function () {
             $('#table1').DataTable();
         });
@@ -56,19 +59,21 @@
         });
 
         $('.table tbody').on('click', '.btnAdd', function () {
-            debugger;
+           
+            //debugger;
             var selected = $('#table1').DataTable().row($(this).parents('tr')).data(); 
-            $(this).attr('disabled', true);
+            $(this).attr('disabled', isActive);
             var col1 = selected[0];
             var col2 = selected[1];
             var col3 = selected[2];
             var col4 = selected[3];
-            var result = '<tr><td>' + col1 + '</td> <td>'
+            var result = '<tr><td>'
+                + col1 + '</td> <td>'
                 + col2 + '</td> <td>'
                 + col3 + '</td> <td>'
                 + col4 + '</td>'
                 + '<td><input type="text" id="qty"/></td>'
-                + '<td class="text-center"><button class="btn btn-success glyphicon glyphicon-ok"></button> <button class="btn btn-danger glyphicon glyphicon-remove" id="remove"></button> </td> </tr>';
+                + '<td class="text-center"><button class="btn btn-success glyphicon glyphicon-ok add"></button> <button class="btn btn-danger glyphicon glyphicon-remove" id="remove"></button> </td> </tr>';
             
             $('#body1').append(result);
 
@@ -80,10 +85,33 @@
 
 
 
-        $('.table tbody').on('click', '#remove', function () {
+        $('#table2 tbody').on('click', '#remove', function () {
             $(this).closest('tr').remove();
         });
 
+        $('#table2 tbody').on('click', '.add', function () {
+
+            var inputVal = document.getElementById("qty").value;
+
+            var selected = $('#table2').DataTable().row($(this).parents('tr')).data(); 
+            var col1 = selected[0];
+            var col2 = selected[1];
+            var col3 = selected[2];
+            var col4 = selected[3];
+            var col5 = inputVal;
+
+            result = '<tr>'
+                + '<td>' + col1 + '</td>'
+                + '<td>' + col2 + '</td>'
+                + '<td>' + col3 + '</td>'
+                + '<td>' + col4 + '</td>'
+                + '<td>' + col5 + '</td>'
+                + '</tr>'
+
+
+            $('#body2').append(result);
+
+        });
 
     </script>
 
