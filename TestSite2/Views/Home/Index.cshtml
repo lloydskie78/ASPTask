@@ -1,8 +1,42 @@
-﻿@{
+﻿@model System.Data.DataTable
+@using System.Data
+@{
     ViewBag.Title = "Home Page";
 }
 
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>
+
 <div><h1>List of Products</h1></div>
+
+<script>
+
+
+    $(document).ready(function () {
+        $("#table1").DataTable({
+            "ajax": {
+                "url": "/Home/getProductlist",
+                "type": 'GET',
+                "dataType": 'JSON'
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "name" },
+                { "data": "description" },
+                { "data": "price" },
+                {
+                    render: function (a, b, object) {
+                        var buttons = '<button class="btn btn-success glyphicon glyphicon-remove" id="remove"> Add</button>';
+                        return buttons;
+                    }
+                }
+            ]
+        });
+    });
+
+</script>
 
 <div class="row padding-top">
     <div class="col-md-7">
@@ -16,99 +50,6 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>123</td>
-                    <td>Tide</td>
-                    <td>Sabon Panglaba</td>
-                    <td>Php 8.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>124</td>
-                    <td>Apple</td>
-                    <td>Fruit for Health</td>
-                    <td>Php 10.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>125</td>
-                    <td>Laptop</td>
-                    <td>Lapad na Tupperware</td>
-                    <td>Php 15,000.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>127</td>
-                    <td>Paper</td>
-                    <td>You can use for anything</td>
-                    <td>Php 25.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>126</td>
-                    <td>Xiaomi Phone</td>
-                    <td>Newest Tech Phone</td>
-                    <td>Php 9,800.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>127</td>
-                    <td>IPhone 11</td>
-                    <td>Newest Tech IPhone</td>
-                    <td>Php 89,800.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>128</td>
-                    <td>Huawei Phone</td>
-                    <td>Most Advance Huawei Phone</td>
-                    <td>Php 25,800.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>129</td>
-                    <td>Acer Predator</td>
-                    <td>Gaming Laptop</td>
-                    <td>Php 110,000.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>130</td>
-                    <td>ROG Laptop</td>
-                    <td>Xtreme Gaming Laptop</td>
-                    <td>Php 220,000.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>131</td>
-                    <td>Ukay-ukay</td>
-                    <td>Barato na mga clothes</td>
-                    <td>Php 1,499.00</td>
-                    <td class="text-center">
-                        <button class="btn btn-success glyphicon glyphicon-ok btnAdd"> Add</button>
-                    </td>
-                </tr>
-                
-            </tbody>
             <tfoot>
                 <tr>
                     <th>Id</th>
@@ -133,8 +74,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="body1">
-            </tbody>
+            <tbody id="body1"></tbody>
             <tfoot>
                 <tr>
                     <th>Id</th>
@@ -160,8 +100,7 @@
                     <th>Total Price</th>
                 </tr>
             </thead>
-            <tbody id="body2">
-            </tbody>
+            <tbody id="body2"></tbody>
             <tfoot>
                 <tr>
                     <th>Id</th>
