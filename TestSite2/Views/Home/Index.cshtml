@@ -139,32 +139,54 @@
 
         $('#table2').on('click', '#insert', function () {
             debugger;
-            var selected = $('#table2').DataTable().row($(this).parents('tr')).data();
 
-            var col1 = selected[0];//id
-            var col2 = selected[1];//name
-            var col3 = selected[2];//desc
-            var col4 = selected[3];//price
+
+            $.ajax({
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // var selected = $('#table2').DataTable().row($(this).parents('tr')).data();
+
+           // var col1 = selected[0];//id
+           // var col2 = selected[1];//name
+           // var col3 = selected[2];//desc
+           // var col4 = selected[3];//price
 
           
 
-            var col5 = $('#qty').val();
-           // alert(col5*col4);   
+           // var col5 = $('#qty').val();
+           //// alert(col5*col4);   
 
-            var col6 = col5 * col4;
-
-
-
-            var result = '<tr><td>'
-                + col1 + '</td> <td>'
-                + col2 + '</td> <td>'
-                + col3 + '</td> <td>'
-                + col4 + '</td> <td>'
-                + col5 + '</td> <td>'
-                + col6+ '</td> </tr>'
+           // var col6 = col5 * col4;
 
 
-            $('#body2').append(result);
+
+           // var result = '<tr><td>'
+           //     + col1 + '</td> <td>'
+           //     + col2 + '</td> <td>'
+           //     + col3 + '</td> <td>'
+           //     + col4 + '</td> <td>'
+           //     + col5 + '</td> <td>'
+           //     + col6+ '</td> </tr>'
+
+
+           // $('#body2').append(result);
+           // $(this).closest('tr').remove();
         });
 
 
