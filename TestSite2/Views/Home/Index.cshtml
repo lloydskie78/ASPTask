@@ -11,32 +11,7 @@
 
 <div><h1>List of Products</h1></div>
 
-<script>
 
-
-    $(document).ready(function () {
-        $("#table1").DataTable({
-            "ajax": {
-                "url": "/Home/getProductlist",
-                "type": 'GET',
-                "dataType": 'JSON'
-            },
-            "columns": [
-                { "data": "id" },
-                { "data": "name" },
-                { "data": "description" },
-                { "data": "price" },
-                {
-                    render: function (a, b, object) {
-                        var buttons = '<button class="btn btn-success glyphicon glyphicon-remove" id="remove"> Add</button>';
-                        return buttons;
-                    }
-                }
-            ]
-        });
-    });
-
-</script>
 
 <div class="row padding-top">
     <div class="col-md-7">
@@ -114,3 +89,78 @@
         </table>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+
+
+        $("#table1").DataTable({
+            "ajax": {
+                "url": "/Home/getProductlist",
+                "type": 'GET',
+                "dataType": 'JSON'
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "name" },
+                { "data": "description" },
+                { "data": "price" },
+                {
+                    render: function (a, b, object) {
+                        var buttons = '<button class="btn btn-success glyphicon glyphicon-remove add"> Add</button>';
+                        return buttons;
+                    }
+                }
+            ]
+        });
+
+
+        $('#table1 tbody').on('click', '.add', function () {
+
+            var selected = $('#table1').DataTable().row($(this).parents('tr')).data();
+
+            var col1 = selected.id;
+            var col2 = selected.name;
+            var col3 = selected.description;
+            var col4 = selected.price;
+            var result = '<tr><td>'
+                + col1 + '</td> <td>'
+                + col2 + '</td> <td>'
+                + col3 + '</td> <td>'
+                + col4 + '</td>'
+                + '<td><input type="text" id="qty"/></td>'
+                + '<td class="text-center"><button class="btn btn-success glyphicon glyphicon-ok" id="insert"></button> <button class="btn btn-danger glyphicon glyphicon-remove" id="remove"></button> </td> </tr>';
+
+            $('#body1').append(result);
+        });
+
+
+
+
+        $('#table2 tbody').on('click', '#insert', function () {
+            debugger;
+            var selected = $('#table2').DataTable().row($(this).parents('tr')).data();
+
+            var col1 = selected[0];//id
+            var col2 = selected[1];//name
+            var col3 = selected[2];//desc
+            var col4 = selected[3];//price
+            //var col5 = selected.
+
+            alert(col5);
+
+            //var result = '<tr><td>'
+            //    + col1 + '</td> <td>'
+            //    + col2 + '</td> <td>'
+            //    + col3 + '</td> <td>'
+            //    + col4 + '</td> <td>'
+            //    + col5 + '</td> <td>'
+            //    + "Hello" + '</td>'
+
+
+           // $('#body2').FullTable(result);
+        });
+
+
+    });
+</script>
