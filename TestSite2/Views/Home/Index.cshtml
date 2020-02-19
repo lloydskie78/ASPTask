@@ -107,7 +107,7 @@
                 { "data": "price" },
                 {
                     render: function (a, b, object) {
-                        var buttons = '<button class="btn btn-success glyphicon glyphicon-remove add"> Add</button>';
+                        var buttons = '<button class="btn btn-success glyphicon glyphicon-remove" id="add"> Add</button>';
                         return buttons;
                     }
                 }
@@ -115,7 +115,7 @@
         });
 
 
-        $('#table1 tbody').on('click', '.add', function () {
+        $('#table1').on('click', '#add', function () {
 
             var selected = $('#table1').DataTable().row($(this).parents('tr')).data();
 
@@ -137,7 +137,7 @@
 
 
 
-        $('#table2 tbody').on('click', '#insert', function () {
+        $('#table2').on('click', '#insert', function () {
             debugger;
             var selected = $('#table2').DataTable().row($(this).parents('tr')).data();
 
@@ -145,20 +145,26 @@
             var col2 = selected[1];//name
             var col3 = selected[2];//desc
             var col4 = selected[3];//price
-            //var col5 = selected.
 
-            alert(col5);
+          
 
-            //var result = '<tr><td>'
-            //    + col1 + '</td> <td>'
-            //    + col2 + '</td> <td>'
-            //    + col3 + '</td> <td>'
-            //    + col4 + '</td> <td>'
-            //    + col5 + '</td> <td>'
-            //    + "Hello" + '</td>'
+            var col5 = $('#qty').val();
+           // alert(col5*col4);   
+
+            var col6 = col5 * col4;
 
 
-           // $('#body2').FullTable(result);
+
+            var result = '<tr><td>'
+                + col1 + '</td> <td>'
+                + col2 + '</td> <td>'
+                + col3 + '</td> <td>'
+                + col4 + '</td> <td>'
+                + col5 + '</td> <td>'
+                + col6+ '</td> </tr>'
+
+
+            $('#body2').append(result);
         });
 
 
